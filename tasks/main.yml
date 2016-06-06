@@ -1,0 +1,23 @@
+---
+- name: install dependencies for nokogiri
+  yum: name={{ item }} state=latest
+  with_items:
+    - libxml2
+    - libxslt
+    - libxml2-devel
+    - libxslt-devel
+
+- name: install the nokogiri
+  shell: /bin/bash -lc "gem install nokogiri -- --use-system-libraries"
+
+- name: install the gem sqlite3
+  shell: /bin/bash -lc "gem install sqlite3"
+
+- name: install the rails
+  shell: /bin/bash -lc "gem install rails --version {{ rails_version }}"
+
+- name: install the unicorn
+  shell: /bin/bash -lc "gem install unicorn"
+
+- name: install the foreman
+  shell: /bin/bash -lc "gem install foreman"
